@@ -1,9 +1,23 @@
-#!/usr/bin/env python
+import sys
+import json
 
-import fileinput
+def format_json():
+    # Read JSON from standard input
+    input_json = sys.stdin.read()
+    
+    try:
+        # Parse the JSON
+        parsed_json = json.loads(input_json)
+        
+        # Format the JSON
+        formatted_json = json.dumps(parsed_json, indent=4)
+        
+        # Output the formatted JSON
+        print(formatted_json)
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON input. {e}", file=sys.stderr)
+        sys.exit(1)
 
-for fileinput_line in fileinput.input():
-    if "Exit" == fileinput_line.rstrip():
-        break
-    print(f"Processing Message from fileinput.input() {fileinput_line}")
+if __name__ == "__main__":
+    format_json()
 
