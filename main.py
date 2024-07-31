@@ -1,6 +1,7 @@
 import sys
 import json
 
+# comments
 def format_json():
     # Read JSON from standard input
     input_json = sys.stdin.read()
